@@ -37,15 +37,19 @@ test:
     - pysmi.reader
     - pysmi.searcher
     - pysmi.writer
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
-  home: http:/pysmi.sf.net
-  license: BSD 2-Clause
+  home: https://pysmi.sourceforge.net/
+  license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE.rst
   summary: SNMP SMI/MIB Parser
   description: 'A pure-Python implementation of SNMP/SMI MIB parsing and conversion library.'
-  doc_url: http://snmplabs.com/pysmi/#documentation
+  doc_url: https://snmplabs.com/pysmi/#documentation
   dev_url: https://github.com/etingof/pysmi
 
 extra:
