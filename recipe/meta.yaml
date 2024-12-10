@@ -43,14 +43,14 @@ test:
     - pip check
 
 about:
-  home: https://pysmi.sourceforge.net/
+  home: https://www.pysnmp.com/pysmi/
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE.rst
   summary: SNMP SMI/MIB Parser
   description: 'A pure-Python implementation of SNMP/SMI MIB parsing and conversion library.'
-  doc_url: https://snmplabs.com/pysmi/#documentation
-  dev_url: https://github.com/etingof/pysmi
+  doc_url: https://docs.lextudio.com/pysmi/
+  dev_url: https://github.com/lextudio/pysmi
 
 extra:
   recipe-maintainers:
