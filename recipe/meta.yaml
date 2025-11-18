@@ -1,6 +1,6 @@
 {% set name = "pysmi" %}
-{% set version = "1.5.9" %}
-{% set sha256 = "f6dfda838e3cba133169f1ff57f71a2841815d43db2e5c619b6e5db3b8560707" %}
+{% set version = "1.6.2" %}
+{% set sha256 = "abed01673113886d10f0f336426859238fc13b5383c7e28e13dbcd5af0443ba1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,24 +8,24 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  skip: true  # [py<39]
 
 requirements:
   host:
     - python
-    - poetry-core >=1.0.0
-    - setuptools
     - pip
+    - flit-core >=3.9.0
   run:
     - python
-    - ply <4.0,>=3.11
-    - jinja2 <4.0.0,>=3.1.3
-    - requests <3.0.0,>=2.26.0
+    - ply >=3.11
+    - jinja2 >=3.1.3
+    - requests >=2.26.0
 
 test:
   imports:
@@ -48,7 +48,7 @@ about:
   license_family: BSD
   license_file: LICENSE.rst
   summary: SNMP SMI/MIB Parser
-  description: 'A pure-Python implementation of SNMP/SMI MIB parsing and conversion library.'
+  description: A pure-Python implementation of SNMP/SMI MIB parsing and conversion library.
   doc_url: https://docs.lextudio.com/pysmi/
   dev_url: https://github.com/lextudio/pysmi
 
