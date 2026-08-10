@@ -1,5 +1,5 @@
 {% set name = "pysmi" %}
-{% set version = "1.6.2" %}
+{% set version = "2.0.2" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,9 @@ package:
 
 source:
   url: https://github.com/lextudio/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: dd8dbb9f8e2080c71ef4b7b1664998da4cfc8ca28020459bd4276f1cac2a309d
+  sha256: 9f122c26e0b315baa9f06b2e30c424b21a2c43101949f2834fc2506840a478d5
+  patches:
+    - 0001-Fix-package-version.patch
 
 build:
   number: 0
@@ -15,7 +17,7 @@ build:
   entry_points:
     - mibcopy = pysmi.scripts.mibcopy:start
     - mibdump = pysmi.scripts.mibdump:start
-  skip: true  # [py<39]
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -24,15 +26,10 @@ requirements:
     - flit-core >=3.9.0
   run:
     - python
-    - ply >=3.11
     - jinja2 >=3.1.3
+    - lark >=1.1.9
     - requests >=2.26.0
 
-# TypeDeclarationFixedLengthTestCase and TypeDeclarationTestCase skipped:
-# pysnmp must be higher than >=7.1.16, latest in the main channel is 7.1.15.
-# E   AssertionError: False != True : wrong fixed length presence for symbol testObjectNTNTF
-{% set deselect_tests = " --deselect=tests/test_typedeclaration_smiv2_pysnmp.py::TypeDeclarationFixedLengthTestCase" %}
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_typedeclaration_smiv2_pysnmp.py::TypeDeclarationTestCase" %}
 test:
   source_files:
     - tests
@@ -49,7 +46,7 @@ test:
     - pip check
     - mibcopy --help
     - mibdump --help
-    - pytest -v tests {{ deselect_tests }}
+    - pytest -v tests
   requires:
     - pip
     - pytest >=6.2.5
@@ -64,7 +61,7 @@ about:
   summary: SNMP SMI/MIB Parser
   description: 'A pure-Python implementation of SNMP/SMI MIB parsing and conversion library.'
   doc_url: https://docs.lextudio.com/pysmi
-  dev_url: https://github.com/lextudio/pysm
+  dev_url: https://github.com/lextudio/pysmi
 
 extra:
   recipe-maintainers:
